@@ -1,17 +1,27 @@
 // ignore_for_file: deprecated_member_use
-
-import 'package:belajar_flutter/presentation/dashboard/Dashboard.dart';
+// import 'package:belajar_flutter/widget/list_card.dart';
 import 'package:flutter/material.dart';
-import '../../widget/icon_with_text.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  List<String> listGambar = [
+    'assets/images/satu.jpg',
+    'assets/images/dua.jpg',
+    'assets/images/tiga.jpg',
+    'assets/images/empat.jpg',
+    'assets/images/lima.jpg',
+    'assets/images/enam.jpg',
+    'assets/images/tujuh.jpg',
+    'assets/images/satu.jpg',
+    'assets/images/dua.jpg',
+    'assets/images/tiga.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white54,
-        title: const Text("Belajar Flutter",
+        title: const Text("Belajar List/Grid View",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black54,
@@ -21,41 +31,35 @@ class Home extends StatelessWidget {
           Icon(Icons.add_a_photo_rounded),
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.lightBlue,
-            height: 70,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const <Widget>[
-                  IconWithText(
-                    icon: Icons.call,
-                    text: 'Call',
-                    theColor: Colors.yellow,
-                  ),
-                  IconWithText(
-                    icon: Icons.arrow_circle_up_sharp,
-                    text: 'To Top',
-                    theColor: Colors.yellow,
-                  ),
-                  IconWithText(
-                    icon: Icons.notification_important_outlined,
-                    text: 'Info',
-                    theColor: Colors.yellow,
-                  ),
-                ]),
-          ),
-          RaisedButton(
-            child: const Text("Go To Dashboard"),
-            onPressed: () {
-              String title = "Berasal Dari Homepage";
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Dashboard(title)));
-            },
-          ),
-        ],
-      ),
+      body: SafeArea(
+          child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: GridView.builder(
+                  itemCount: listGambar.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5),
+                  itemBuilder: (context, index) => Container(
+                      color: Colors.grey,
+                      height: 200,
+                      width: 200,
+                      child: Image.asset(
+                        listGambar[index],
+                        fit: BoxFit.cover,
+                      ))))),
     );
   }
 }
+
+          // child: ListView.builder(
+          //     itemCount: listGambar.length,
+          //     itemBuilder: (context, index) => Container(
+          //         color: Colors.grey,
+          //         height: 200,
+          //         width: 200,
+          //         margin: const EdgeInsets.only(top: 10),
+          //         child: Image.asset(
+          //           listGambar[index],
+          //           fit: BoxFit.cover,
+          //         )))),
