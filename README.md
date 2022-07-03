@@ -1,6 +1,4 @@
-# belajar_flutter
-
-A new Flutter project.
+# My Flutter Learning Progress
 
 ## Getting Started
 
